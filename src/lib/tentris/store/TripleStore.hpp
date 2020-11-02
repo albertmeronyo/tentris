@@ -10,11 +10,11 @@
 
 #include "tentris/store/RDF/TermStore.hpp"
 #include "tentris/store/RDF/SerdParser.hpp"
-#include "tentris/store/SPARQL/ParsedSPARQL.hpp"
+//#include "tentris/store/SPARQL/ParsedSPARQL.hpp"
 #include "tentris/util/LogHelper.hpp"
 #include "tentris/tensor/BoolHypertrie.hpp"
 #include "tentris/store/SPARQL/TriplePattern.hpp"
-#include <Dice/rdf_parser/TurtleParser.hpp>
+//#include <Dice/rdf_parser/Parser/Turtle/Parsers/StringParser.hpp>
 
 
 namespace {

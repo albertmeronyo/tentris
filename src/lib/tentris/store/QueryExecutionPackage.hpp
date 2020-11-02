@@ -7,9 +7,8 @@
 
 #include "tentris/store/RDF/TermStore.hpp"
 #include "tentris/store/AtomicTripleStore.hpp"
-#include "tentris/store/SPARQL/ParsedSPARQL.hpp"
 #include "tentris/tensor/BoolHypertrie.hpp"
-
+#include <Dice/Sparql-Parser/Parser.hpp>
 namespace tentris::store {
 	class TripleStore;
 };
@@ -55,8 +54,13 @@ namespace tentris::store::cache {
 		 * @throw std::invalid_argument the sparql query was not parsable
 		 */
 		explicit QueryExecutionPackage(const std::string &sparql_string) : sparql_string{sparql_string} {
+
 			logDebug(fmt::format("Parsing query: {}", sparql_string));
 			ParsedSPARQL parsed_sparql{sparql_string};
+
+            std::shared_ptr<SelectQuery>selectQuery=SparqlParser::Parser::parseSelectQuery(sparql_string);
+            selectQuery->
+
 			subscript = parsed_sparql.getSubscript();
 			select_modifier = parsed_sparql.getSelectModifier();
 			logDebug(fmt::format("Parsed subscript: {} [distinct = {}]",
