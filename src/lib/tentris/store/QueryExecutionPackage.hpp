@@ -9,6 +9,7 @@
 #include "tentris/store/AtomicTripleStore.hpp"
 #include "tentris/tensor/BoolHypertrie.hpp"
 #include <Dice/Sparql-Parser/Parser.hpp>
+#include <Dice/einsum/internal/Subscript.hpp>
 namespace tentris::store {
 	class TripleStore;
 };
@@ -18,6 +19,7 @@ namespace tentris::store::cache {
 	namespace {
 		using namespace tentris::store::sparql;
 		using namespace tentris::tensor;
+        using Subscript =  einsum::internal::Subscript;
 	}; // namespace
 
 	/**
@@ -56,10 +58,10 @@ namespace tentris::store::cache {
 		explicit QueryExecutionPackage(const std::string &sparql_string) : sparql_string{sparql_string} {
 
 			logDebug(fmt::format("Parsing query: {}", sparql_string));
-			ParsedSPARQL parsed_sparql{sparql_string};
+			//ParsedSPARQL parsed_sparql{sparql_string};
 
             std::shared_ptr<SelectQuery>selectQuery=SparqlParser::Parser::parseSelectQuery(sparql_string);
-            selectQuery->
+            selectQuery->executeQuery()
 
 			subscript = parsed_sparql.getSubscript();
 			select_modifier = parsed_sparql.getSelectModifier();
